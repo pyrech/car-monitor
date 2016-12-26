@@ -2,7 +2,8 @@
 
 Currently WIP!
 
-Mainly an interface for the excellent `bluetooth-obd` npm package.
+Mainly an interface for the excellent [`bluetooth-obd`](https://github.com/EricSmekens/node-bluetooth-obd)
+npm package.
 
 This project is composed of 2 packages:
 
@@ -17,12 +18,15 @@ version of JS for maximum compatibilities.
 
 ## Installation
 
-It requires some system dependencies:
+`bluetooth-obd` is based on [`bluetooth-serial-port`](https://github.com/eelcocramer/node-bluetooth-serial-port)
+which provides bluetooth features to node. It works for Linux, MacOS and Windows
+but can require some system dependencies - check their README. For example, on
+Linux you need to run:
 
-`apt-get install build-essential libbluetooth-dev`
+`sudo apt-get install build-essential libbluetooth-dev`
 
 You also need to have `nodejs` and `yarn` installed. A `Makefile` is available to
-ease install, building and running. Have a look to `make help` is you want.
+ease install, building and running. Have a look to `make help` if you want.
 
 Now install js dependencies for both project:
 
