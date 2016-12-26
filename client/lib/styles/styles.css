@@ -1,42 +1,18 @@
+@import 'pid-list.css';
+@import 'widget.css';
+
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: #C2C2C2;
 }
 .wrapper {
-    display: flex;
     overflow: hidden;
 }
 .main {
-    //width: 80%;
+    margin-right: 20%;
 }
-.pid-list {
-    list-style: none;
-    //width: 20%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    overflow-y: scroll;
-}
-.pid-list li {
+.grid {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    height: 30px;
-    background-color: white;
-    border-bottom: 1px solid #3C3C3C;
-}
-.pid-list .name {
-    color: #3C3C3C;
-}
-.pid-list .value {
-    margin-left: 10px;
-}
-.pid-list .value.nc {
-    color: blue;
-}
-.pid-list .value.ok {
-    color: green;
 }

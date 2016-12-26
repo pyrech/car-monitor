@@ -1,81 +1,13 @@
 import React, { Component } from 'react';
 
 export default class PidList extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            pids: [],
-            values: {},
-            loading: false,
-        };
-    }
-
-    componentDidMount() {
-        this.fetchList();
-    }
-
-    fetchList() {
-        this.setState({
-            loading: true,
-        });
-
-        fetch('/pids/list', {
-            method: 'get',
-        })
-            .then(response => response.json())
-            .then(response => {
-                this.setState({
-                    pids: response,
-                    loading: false,
-                });
-                this.fetchValues();
-            })
-            .catch(function(err) {
-                console.log(err);
-            })
-        ;
-    }
-
-    fetchValues() {
-        const socket = io();
-        let currentIndex = 0;
-
-        const functionId = window.setInterval(() => {
-            socket.emit('pid.request', this.state.pids[currentIndex].name);
-            currentIndex++;
-
-            if (currentIndex >= this.state.pids.length) {
-                window.clearInterval(functionId);
-            }
-        }, 300);
-
-        socket.on('pid.update', msg => {
-            const pids = JSON.parse(msg);
-
-            const values = this.state.values;
-
-            pids.map((pid) => {
-                values[pid.name] = pid.value;
-            });
-
-            this.setState({
-                values: values,
-            });
-        });
-    }
-
     render () {
-        if (this.state.loading) {
-           return <p>PIDs are loading</p>
-        }
+        const { pids, values } = this.props;
 
-        if (this.state.pids.length < 1) {
-           return <p>No PID to display</p>
-        }
+        const items = Object.keys(pids).map(name => {
+            const pid = pids[name];
+            const value = values[name];
 
-        const items = this.state.pids.map(pid => {
-            const value = this.state.values[pid.name];
             const formatValue = value => {
                 if (value === undefined) {
                     return 'NC';
@@ -100,9 +32,17 @@ export default class PidList extends Component {
         });
 
         return (
-            <ul className="pid-list">
-                {items}
-            </ul>
+            <div className="pid-list">
+                <h2>List of all PIDS</h2>
+                <ul>
+                    {items}
+                </ul>
+            </div>
         );
     }
 }
+
+PidList.propTypes = {
+    pids: React.PropTypes.object,
+    values: React.PropTypes.object,
+};

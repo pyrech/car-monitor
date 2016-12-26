@@ -11,14 +11,15 @@ const httpServer = http.Server(app);
 const io = socket(httpServer);
 const btOBDReader = new OBDReader();
 
-const exposedPIDs = PIDs.map(pid => {
-    return {
+const exposedPIDs = {};
+PIDs.map(pid => {
+    exposedPIDs[pid.name] = {
         name: pid.name,
         description: pid.description,
         min: pid.min,
         max: pid.max,
         unit: pid.unit
-    }
+    };
 });
 
 var dataReceivedMarker = {};

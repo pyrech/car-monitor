@@ -1,0 +1,22 @@
+.widget {
+    margin: 1%;
+    width: 20%;
+    height: 20%;
+    background-color: white;
+    border: 1px solid #3C3C3C;
+}
+
+.widget-title {
+    border-bottom: 1px solid #3C3C3C;
+    padding: 10px;
+}
+
+.widget-content {
+    padding: 10px;
+}
+
+.simple-widget-value {
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+}
